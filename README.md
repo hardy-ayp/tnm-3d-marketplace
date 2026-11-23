@@ -4,6 +4,8 @@ An open-source, web-based 3D interactive custom apparel studio and merchandise e
 
 This repository contains the standalone marketplace and customization studio module, completely decoupled from any external portal dependencies. It is self-contained, portable, and ready for deployment or community contributions.
 
+For detailed development goals, technical requirements, and project scope for 3D artists and developers, please read the [Project Brief](BRIEF.md).
+
 ---
 
 ## Key Features
