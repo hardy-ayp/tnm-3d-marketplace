@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test DecalGeometry</title>
+</head>
+<body>
+  <div id="status">Loading...</div>
+  <script src="../vendor/three.min.js"></script>
+  <script src="../vendor/OrbitControls.js"></script>
+  <script src="../vendor/GLTFLoader.js"></script>
+  <script src="../vendor/DecalGeometry.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        if (!THREE) throw new Error('THREE not defined');
+        if (!THREE.OrbitControls) throw new Error('OrbitControls not defined');
+        if (!THREE.GLTFLoader) throw new Error('GLTFLoader not defined');
+        if (!THREE.DecalGeometry) throw new Error('DecalGeometry not defined');
+
+        // Test basic DecalGeometry instantiation with dummy mesh
+        const geom = new THREE.BoxGeometry(1, 1, 1);
+        const mesh = new THREE.Mesh(geom);
+        const pos = new THREE.Vector3(0, 0, 0.5);
+        const orient = new THREE.Euler(0, 0, 0);
+        const size = new THREE.Vector3(0.5, 0.5, 0.5);
+        const decal = new THREE.DecalGeometry(mesh, pos, orient, size);
+
+        document.getElementById('status').innerText = 'SUCCESS: All vendor scripts and DecalGeometry initialized successfully!';
+      } catch (err) {
+        document.getElementById('status').innerText = 'ERROR: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

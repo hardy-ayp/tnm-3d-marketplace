@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%">
+  <rect width="100%" height="100%" fill="#121212"/>
+  <!-- Lighter Body -->
+  <rect x="135" y="200" width="130" height="190" rx="12" fill="#1f1f1f" stroke="#000" stroke-width="2" />
+  <!-- Lighter Cap -->
+  <rect x="135" y="110" width="130" height="85" rx="12" fill="#1f1f1f" stroke="#000" stroke-width="2" />
+  <line x1="135" y1="195" x2="265" y2="195" stroke="#000000" stroke-width="3" />
+  <!-- Logo engraving -->
+  <text x="200" y="295" font-family="'Archivo Black', sans-serif" font-size="32" font-weight="900" fill="#D63B29" text-anchor="middle">TNM</text>
+  <text x="200" y="325" font-family="sans-serif" font-size="10" font-weight="800" fill="#888" text-anchor="middle" letter-spacing="2">MATTE BLACK</text>
+</svg>

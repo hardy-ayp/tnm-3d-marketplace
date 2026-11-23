@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">
+  <use href="#garmentBody" />
+  <image href="../models/tshirt-front.svg" width="600" height="700" />
+  <g transform="translate(225, 200) scale(0.65)">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <rect width="240" height="240" rx="28" fill="#1C1826" stroke="#9065B0" stroke-width="3" />
+  <path d="M120 40 C75 40 40 75 40 120 C40 155 62 185 95 195 L95 210 L145 210 L145 195 C178 185 200 155 200 120 C200 75 165 40 120 40 Z" fill="#2E2442" />
+  <circle cx="95" cy="115" r="14" fill="#D63B29" />
+  <circle cx="145" cy="115" r="14" fill="#D63B29" />
+  <path d="M120 135 L112 155 L128 155 Z" fill="#ECE8DD" />
+  <text x="120" y="228" font-family="'Archivo Black', sans-serif" font-size="19" font-weight="900" fill="#D63B29" text-anchor="middle">#CERITASEREM</text>
+</svg>
+  </g>
+</svg>

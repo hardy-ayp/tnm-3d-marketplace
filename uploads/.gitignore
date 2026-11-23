@@ -1,0 +1,4 @@
+# Ignore user uploads in git repository
+*
+!.gitignore
+!.gitkeep

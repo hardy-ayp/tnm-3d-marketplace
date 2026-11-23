@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="100%" height="100%">
+  <path id="garmentBody" class="garment-color-fill"
+        d="M 215 85 Q 300 95 385 85 L 555 160 L 510 320 L 440 270 L 445 640 Q 300 655 155 640 L 160 270 L 90 320 L 45 160 Z"
+        fill="#141414" stroke="#000000" stroke-width="2" stroke-linejoin="round" />
+  <path d="M 215 85 Q 300 95 385 85 Q 300 110 215 85 Z" fill="#0d0d0d" stroke="#000000" stroke-width="1.8" />
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hoodieShadeBack" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.35" />
+      <stop offset="15%" stop-color="#000000" stop-opacity="0.05" />
+      <stop offset="85%" stop-color="#000000" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.35" />
+    </linearGradient>
+  </defs>
+
+  <path id="garmentBody" class="garment-color-fill"
+        d="M 210 115 L 140 125 L 45 320 L 105 345 L 165 240 L 160 590 L 440 590 L 435 240 L 495 345 L 555 320 L 460 125 L 390 115 Z"
+        fill="#141414" stroke="#000000" stroke-width="2" stroke-linejoin="round" />
+
+  <path d="M 210 115 L 140 125 L 45 320 L 105 345 L 165 240 L 160 590 L 440 590 L 435 240 L 495 345 L 555 320 L 460 125 L 390 115 Z"
+        fill="url(#hoodieShadeBack)" style="mix-blend-mode: multiply;" />
+
+  <!-- Draped Hood Back -->
+  <path d="M 210 110 Q 180 50 300 45 Q 420 50 390 110 Q 300 185 210 110 Z" fill="#181818" stroke="#000000" stroke-width="2" />
+  <path d="M 230 115 Q 300 165 370 115" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+
+  <rect x="160" y="590" width="280" height="35" rx="3" fill="#0d0d0d" stroke="#000000" stroke-width="1.5" />
+</svg>

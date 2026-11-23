@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Test 2.5D Realistic Studio</title>
+  <style>
+    body {
+      background: #0f0f0f;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    .preview-box {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #25221d 0%, #12100d 70%);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+    .garment-stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Layer 1: Background Color Tint via CSS Mask */
+    .garment-color-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #141414; /* Default Black */
+      -webkit-mask-image: url('tshirt-front.png');
+      mask-image: url('tshirt-front.png');
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      transition: background-color 0.25s ease;
+    }
+    /* Layer 2: Realistic Photographic Shading */
+    .garment-shading {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+    /* Layer 3: Print Area (Chest) */
+    .print-area {
+      position: absolute;
+      top: 25%;
+      left: 32%;
+      width: 36%;
+      height: 42%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .print-graphic {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      transition: transform 0.1s ease;
+    }
+    /* Layer 4: Top Crease Blend (Gives the printed design natural fabric shadows!) */
+    .garment-crease-top {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .controls {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+    }
+    button {
+      padding: 10px 16px;
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: #1c1914;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h2>2.5D Realistic Apparel Studio Test</h2>
+  <div class="preview-box">
+    <div class="garment-stage">
+      <div id="colorLayer" class="garment-color-bg"></div>
+      <img id="shadingLayer" class="garment-shading" src="tshirt-front.png" alt="Shading">
+      <div class="print-area">
+        <img id="graphicImg" class="print-graphic" src="../presets/preset-logo-tnm.svg" alt="Graphic">
+      </div>
+      <img id="creaseLayer" class="garment-crease-top" src="tshirt-front.png" alt="Crease Top">
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="setColor('#141414')">Hitam</button>
+    <button onclick="setColor('#ece8dd')">Putih/Krem</button>
+    <button onclick="setColor('#d63b29')">Merah TNM</button>
+    <button onclick="setColor('#263049')">Navy</button>
+    <button onclick="setColor('#2e4436')">Forest Green</button>
+    <button onclick="toggleSide()">Ganti Depan / Belakang</button>
+    <button onclick="toggleModel()">Ganti Kaos / Hoodie</button>
+  </div>
+
+  <script>
+    let currentModel = 'tshirt';
+    let currentSide = 'front';
+
+    function setColor(hex) {
+      document.getElementById('colorLayer').style.backgroundColor = hex;
+    }
+
+    function updateImages() {
+      const src = currentModel + '-' + currentSide + '.png';
+      document.getElementById('colorLayer').style.maskImage = "url('" + src + "')";
+      document.getElementById('colorLayer').style.webkitMaskImage = "url('" + src + "')";
+      document.getElementById('shadingLayer').src = src;
+      document.getElementById('creaseLayer').src = src;
+    }
+
+    function toggleSide() {
+      currentSide = currentSide === 'front' ? 'back' : 'front';
+      updateImages();
+    }
+
+    function toggleModel() {
+      currentModel = currentModel === 'tshirt' ? 'hoodie' : 'tshirt';
+      updateImages();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# ======================================================================
+# 3D Apparel Marketplace — Git Ignore Rules
+# ======================================================================
+
+# SQLite Databases & Storage Data
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/*.sqlite
+data/*.sqlite3
+data/*.log
+*.log
+
+# User Uploaded Custom Mockups & Snapshots
+uploads/*
+!uploads/.gitkeep
+!uploads/.gitignore
+
+# Environment & Local Secrets
+.env
+.env.local
+.env.*.local
+config.local.php
+
+# Operating System Caches
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Code Editor & IDE Configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary & Swap Files
+*.tmp
+*.bak
+*.old
+*.swp
+*~

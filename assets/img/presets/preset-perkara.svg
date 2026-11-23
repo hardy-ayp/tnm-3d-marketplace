@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <rect width="240" height="240" rx="28" fill="#221210" stroke="#D63B29" stroke-width="3" />
+  <circle cx="120" cy="110" r="65" fill="none" stroke="#D63B29" stroke-width="6" stroke-dasharray="10,6" />
+  <text x="120" y="105" font-family="'Archivo Black', sans-serif" font-size="34" font-weight="900" fill="#D63B29" text-anchor="middle">BEDAH</text>
+  <text x="120" y="138" font-family="'Archivo Black', sans-serif" font-size="26" font-weight="900" fill="#ECE8DD" text-anchor="middle">PERKARA</text>
+  <text x="120" y="215" font-family="'Archivo Black', sans-serif" font-size="18" font-weight="900" fill="#D63B29" text-anchor="middle">INDONESIA</text>
+</svg>

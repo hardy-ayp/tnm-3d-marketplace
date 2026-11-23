@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <rect width="240" height="240" rx="28" fill="#241E15" stroke="#E09548" stroke-width="3" />
+  <!-- Cassette body -->
+  <rect x="35" y="60" width="170" height="105" rx="10" fill="#1A1712" stroke="#E09548" stroke-width="2.5" />
+  <rect x="65" y="85" width="110" height="55" rx="6" fill="#F4EDE0" />
+  <circle cx="95" cy="112" r="14" fill="#1A1712" stroke="#E09548" stroke-width="2" />
+  <circle cx="145" cy="112" r="14" fill="#1A1712" stroke="#E09548" stroke-width="2" />
+  <text x="120" y="195" font-family="'Archivo Black', sans-serif" font-size="18" font-weight="900" fill="#E09548" text-anchor="middle">#MALAMMINGGU</text>
+</svg>

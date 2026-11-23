@@ -1,0 +1,53 @@
+# ======================================================================
+# TNM Official Marketplace — Sub-Application Apache Configuration
+# ======================================================================
+
+Options -Indexes
+DirectoryIndex index.php
+AddDefaultCharset UTF-8
+
+# Block all archives, database dumps, logs, backups, and sensitive files
+<FilesMatch "\.(zip|rar|tar|gz|7z|sql|db|sqlite|log|bak|old|tmp|env|ini|conf)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Block access to private system folders and sensitive extensions
+    RewriteRule (\.zip|\.rar|\.tar|\.gz|\.7z|\.sql|\.db|\.sqlite|\.log|\.bak|\.old|\.tmp|\.env|\.ini|\.conf|\.md)$ - [F,L]
+    RewriteRule (^|/)(data|includes|logs)/.*$ - [F,L]
+
+    # 2. Product Pretty URL: /product/slug -> product.php?slug=$1
+    RewriteRule ^product/([a-zA-Z0-9_-]+)/?$ product.php?slug=$1 [L,QSA]
+
+    # 3. Clean URLs for standard pages
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php [L,QSA]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header unset X-Powered-By
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" "expr=%{HTTPS} == 'on'"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.whatsapp.com https://www.youtube.com; media-src 'self' data: blob:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self';"
+
+    <FilesMatch "\.(css|js|png|jpe?g|gif|webp|svg|ico|woff2?)$">
+        Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400"
+    </FilesMatch>
+
+    <FilesMatch "\.php$">
+        Header set Cache-Control "private, no-cache, no-store, must-revalidate, max-age=0"
+    </FilesMatch>
+</IfModule>
