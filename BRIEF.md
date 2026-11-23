@@ -1,88 +1,90 @@
 # Project Brief: 3D Apparel Virtual Fitting Room & Marketplace
 
-Dokumen ini menjelaskan latar belakang, tujuan, kebutuhan teknis (requirements), serta batasan ruang lingkup (scope) proyek untuk kontributor, 3D artist, dan web developer.
+*Languages: [English](BRIEF.md) | [Bahasa Indonesia](BRIEF_ID.md)*
+
+This document defines the background, objectives, technical requirements, and boundaries of scope for 3D artists, riggers, and WebGL developers contributing to the project.
 
 ---
 
 ## 1. Project Overview & Background
 
-### Latar Belakang
-Modul ini adalah platform e-commerce merchandise dan studio apparel interaktif berbasis WebGL (Three.js) dan PHP/SQLite. Fitur unggulannya adalah **Virtual Fitting Room** (`fitting-room.php`), di mana pengguna dapat melihat karakter humanoid 3D (Andri) mencoba berbagai pakaian (T-Shirt, Hoodie, Celana/Jeans, dan Aksesori).
+### Context
+This repository contains a standalone, web-based 3D apparel e-commerce platform and interactive customizer built with Three.js (WebGL), PHP, and SQLite. Its flagship feature is the **Virtual Fitting Room** (`fitting-room.php`), which renders a rigged humanoid 3D avatar (Andri) trying on modular clothing items such as T-Shirts, Hoodies, Pants/Jeans, and modular accessories.
 
-### Masalah Saat Ini
-Aset pakaian 3D yang saat ini terpasang masih terlihat kaku dan menyerupai objek solid yang sekadar ditempelkan di atas permukaan kulit karakter. Pakaian belum memiliki volume fisik yang meyakinkan, lipatan/kerutan kain alami (cloth folds/wrinkles), dan deformasi yang luwes saat karakter berpose atau bergerak.
+### Current Problem
+The current 3D garment assets appear rigid and behave like static objects glued to the character's surface. They lack realistic fabric volume, natural cloth folds and wrinkles, and organic deformation when the character assumes poses or rotates in the viewport.
 
-### Tujuan Utama
-Membangun dan menyempurnakan sistem pakaian 3D (Garment Mesh, Cloth Physics/Simulation, Body Conforming, dan Rigging) agar pakaian terlihat benar-benar dikenakan oleh tubuh manusia secara proporsional dan realistis saat dirender di browser melalui Three.js.
+### Core Objective
+Reconstruct and refine the 3D clothing system (Garment Mesh Geometry, Cloth Physics/Simulation, Body Conforming, and Rigging/Weight Painting) so apparel convincingly wraps the human body with natural folds and accurate fabric behavior when rendered in the browser via Three.js.
 
 ---
 
 ## 2. Technical & Quality Requirements
 
 ### A. 3D Modeling & Garment Construction
-1. **Garment Geometry & Volume:**
-   - Pakaian harus dibuat sebagai geometri terpisah dengan ketebalan (thickness) wajar, bukan plane datar atau tekstur yang ditempel di kulit.
-   - Memiliki struktur pakaian nyata: garis jahitan (seams), keliman (hems), kerah (collar), dan manset (cuffs) yang terdefinisi dengan rapi.
-2. **Body Conforming (Kesesuaian Anatomi):**
-   - Geometri pakaian harus mengikuti kontur anatomi karakter: bahu, dada, ketiak, punggung, pinggang, selangkangan, dan paha.
-   - Wajib ada celah jarak wajar (offset) antara kain dan kulit tubuh untuk mencegah tembus (skin clipping).
-3. **Karakteristik Material & Lipatan Kain:**
-   - Memperlihatkan lipatan dan kerutan kain yang alami sesuai karakteristik bahan:
-     - T-Shirt (Cotton): Lembut, jatuh mengikuti tubuh, lipatan halus di ketiak dan pinggang.
-     - Hoodie (Fleece/Heavy Cotton): Bervolume tebal, lipatan tegas di lengan, saku kanguru bervolume, tudung kepala (hood) memiliki rongga natural.
-     - Celana (Denim): Kain kokoh dengan lipatan khas di area selangkangan dan lekuk lutut.
+1. **Garment Geometry & Physical Volume:**
+   - Clothes must be built as distinct physical garments with realistic thickness (approx. 1.5mm - 2.5mm), not paper-thin flat planes or skins directly cloned from body vertices.
+   - Include authentic garment tailoring details: neckline/collar ribs, sleeve cuffs, hem folds, and realistic seam lines.
+2. **Body Conforming & Anatomical Fit:**
+   - Meshes must follow the character's body contours (shoulders, chest, armpits, back, waist, crotch, and thighs).
+   - Maintain a natural physical clearance (offset) between the inner garment surface and the character's skin to eliminate mesh penetration and clipping.
+3. **Fabric Physics & Draping Characteristics:**
+   - Differentiate fabric weight and drape properties:
+     - **T-Shirt (Cotton):** Soft, gravity-influenced drape with subtle tension folds around the chest and armpits.
+     - **Hoodie (Fleece / Heavy French Terry):** Chunky silhouette, pronounced structural folds on sleeves, a volumetric kangaroo pocket, and an open, hollow hood structure.
+     - **Pants / Jeans (Heavy Denim):** Rigid structure with characteristic horizontal whiskering, creasing behind knees, and natural ankle stacking.
 4. **Rigging & Weight Painting:**
-   - Setiap pakaian harus memiliki skinning / vertex weight yang terikat harmonis dengan armature karakter (`andri_fullbody_rigged`).
-   - Tidak ada poligon yang saling bertabrakan atau merenggang rusak saat pose kamera berubah.
+   - Every clothing item must have clean vertex weights transferred or painted to deform smoothly with the character's armature (`andri_fullbody_rigged`).
+   - Vertices must not stretch abnormally, spike, or collapse during viewport rotation and animation.
 
 ### B. WebGL & Browser Optimization
-1. **Format Output:** Binary glTF (`.glb`) dengan master file Blender (`.blend`) terdokumentasi.
+1. **Target Format:** Binary glTF (`.glb`) exported alongside documented master Blender project files (`.blend`).
 2. **Polygon Budget:**
-   - Karakter tubuh: ~20.000 - 30.000 tris.
-   - Pakaian (T-shirt/Hoodie/Celana): ~10.000 - 30.000 tris per item.
-   - Total scene dalam viewport browser tidak melebihi 100.000 tris agar berjalan lancar pada 60 FPS di perangkat mobile dan laptop standar.
+   - Body Mesh: ~20,000 - 30,000 triangles.
+   - Apparel Item (T-Shirt, Hoodie, or Pants): ~10,000 - 30,000 triangles per item.
+   - Total scene count must remain under 100,000 triangles to guarantee a steady 60 FPS on modern mobile devices and standard consumer laptops.
 3. **PBR Materials & Textures:**
-   - Menggunakan PBR Metallic-Roughness workflow standar.
-   - Resolusi tekstur optimal: 1024x1024 hingga maksimal 2048x2048 (format PNG/WebP terkompresi).
+   - Standard PBR Metallic-Roughness workflow.
+   - Texture maps (BaseColor, Normal, Roughness) sized between 1024x1024 and 2048x2048 in compressed PNG or WebP formats.
 4. **Decal / Stamping Compatibility:**
-   - Mesh bagian depan dan belakang baju harus memiliki UV layout rapi (channel 0, non-overlapping) agar sistem penempelan sablon/decal di `customizer.php` dan `fitting-room.php` bekerja akurat.
+   - Front and back chest/torso UVs must be laid out cleanly on UV channel 0 without overlapping or distortion, enabling accurate real-time vector decal projection in `customizer.php` and `fitting-room.php`.
 
 ---
 
-## 3. Project Scope (Ruang Lingkup)
+## 3. Project Scope
 
-### In-Scope (Fokus Pengerjaan)
-1. **Penyempurnaan Aset 3D Pakaian:**
-   - Memperbaiki atau memodelkan ulang mesh pakaian:
+### In-Scope (Primary Focus)
+1. **3D Apparel Asset Refinement & Remodeling:**
+   - Refactor or rebuild clothing assets:
      - `assets/models/tshirt.glb`
      - `assets/models/hoodie.glb`
-     - Mesh celana panjang / jeans pada `andri_fullbody_rigged.glb`
-   - Melakukan baking lipatan kain (normal map / baked cloth simulation) atau morph targets / blendshapes.
-   - Weight transfer dan skinning pakaian ke armature karakter pada `assets/models/andri_fullbody_rigged.blend`.
-2. **Integrasi Viewport Three.js:**
-   - Memastikan model `.glb` baru terpanggil sempurna di `fitting-room.php` tanpa clipping atau visual error.
-   - Optimasi pencahayaan dan material loader di Three.js jika dibutuhkan penyesuaian roughness/metalness.
-3. **Dokumentasi & Reproducibility:**
-   - Mencatat parameter modifier Blender atau teknik simpan yang digunakan agar dapat diterapkan pada variasi pakaian berikutnya.
+     - Pants/Jeans on `assets/models/andri_fullbody_rigged.glb`
+   - Implement realistic fabric wrinkles and tension lines (via baked cloth simulation, high-to-low normal baking, or shape keys).
+   - Weight paint and bind clothing meshes to the character skeleton in `assets/models/andri_fullbody_rigged.blend`.
+2. **Three.js Viewport Integration:**
+   - Ensure exported `.glb` files load seamlessly into `fitting-room.php` without clipping, missing materials, or shader compilation warnings.
+   - Tune Three.js material properties (roughness, metalness, clearcoat) for natural fabric appearance under existing studio lighting presets.
+3. **Workflow Documentation:**
+   - Document any Blender modifiers or export settings used so future clothing drops can replicate the pipeline.
 
-### Out-of-Scope (Bukan Bagian Proyek Ini)
-1. **Backend Portal Utama TNM:**
-   - Seluruh logika website pusat (artikel, feed media sosial, CMS blog) di luar folder `marketplace/` berada di luar cakupan.
-2. **Migrasi Framework Frontend:**
-   - Arsitektur proyek menggunakan Three.js native ES Module, HTML5, dan Vanilla JS/CSS. Tidak diperkenankan merombak struktur dasar menjadi React, Next.js, atau framework berat lainnya karena modul harus tetap mandiri dan ringan.
-3. **Server-Side Physics Computing:**
-   - Tidak memerlukan server Node.js khusus untuk komputasi physics. Semua rendering dan animasi harus berjalan client-side pada GPU browser via WebGL.
-4. **Sistem Payment Gateway Bank Otomatis:**
-   - Alur checkout toko saat ini sengaja dirancang menggunakan verifikasi token dan WhatsApp direct order; integrasi payment gateway pihak ketiga (Midtrans, Xendit, dll.) bukan fokus tahap ini.
-5. **AR Webcam / Face Tracking:**
-   - Viewport interaktif dibatasi pada 3D orbital camera (rotasi, zoom, pan) dan preset kamera, bukan tracking kamera ponsel real-time.
+### Out-of-Scope (Do Not Touch)
+1. **Main Portal Backend:**
+   - All external website logic, articles, and databases outside the `marketplace/` directory are strictly out of scope.
+2. **Frontend Architecture Overhaul:**
+   - The platform relies on lightweight native Three.js ES Modules, HTML5, and Vanilla JS/CSS. Do not convert the project into Next.js, React, Vue, or heavy node-based frameworks.
+3. **Server-Side Physics Engines:**
+   - No dedicated server-side simulation backends. All physics, lighting, and viewport rendering must run client-side on user GPUs via WebGL.
+4. **Direct Bank Payment Gateways:**
+   - The checkout workflow is designed around cryptographic token verification and WhatsApp direct order dispatch. Integration with third-party payment gateways (e.g., Midtrans, Stripe) is not required for this phase.
+5. **Webcam AR / Face Tracking:**
+   - The fitting room focuses strictly on an interactive 3D orbital viewport with presets, not real-time webcam motion tracking.
 
 ---
 
 ## 4. Deliverables & Acceptance Criteria
 
-Kontribusi dianggap selesai dan siap di-merge apabila:
-1. File `.glb` pakaian dan master `.blend` telah diperbarui dan diuji di `fitting-room.php`.
-2. Pakaian terlihat memiliki ketebalan nyata, lipatan kain proporsional, dan tidak menembus kulit model saat diamati dari sudut 360 derajat.
-3. Frame rate rendering di browser stabil di kisaran 60 FPS pada perangkat pengujian umum.
-4. Kode pull request bersih dari data privat, kredensial, atau path absolut lokal.
+A contribution is considered complete and eligible for merge when:
+1. Updated `.glb` apparel files and the updated master `.blend` file are committed and functional in `fitting-room.php`.
+2. Garments exhibit noticeable depth, natural cloth wrinkles, and zero skin clipping when inspected from 360-degree orbital angles.
+3. Browser viewport maintains 60 FPS performance on standard hardware.
+4. Pull request contains zero proprietary credentials, customer information, or absolute machine-specific file paths.
