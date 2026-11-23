@@ -16,18 +16,25 @@ This repository contains the standalone marketplace and customization studio mod
    - Real-time fabric color picker and material roughness simulation.
    - Client-side 2D/3D snapshot generator for order thumbnails and production mockups.
 
-2. **Merchandise Storefront (`index.php`, `catalog.php`, `product.php`)**
+2. **3D Character Virtual Fitting Room (`fitting-room.php`)**
+   - Humanoid 3D character avatar (`andri_fullbody_rigged.glb`) with rigged skeleton and realistic proporstions.
+   - Modular wardrobe switching between T-Shirts, Hoodies, Jeans, and modular accessories (`accessory_slingbag.glb`).
+   - Dynamic camera presets: Full Body, Close-Up Portrait, Torso Apparel, and Shoes.
+   - Studio lighting controls: Studio Warm, Midnight Blue, and Crimson Horror modes.
+   - High-resolution reference photos (`andri1.png`, `andri2.png`, `andriuwo.png`) and facial texture maps included in `assets/img/references/` for community 3D modellers and riggers.
+
+3. **Merchandise Storefront (`index.php`, `catalog.php`, `product.php`)**
    - Responsive modern UI supporting both dark and light modes with anti-FOUC state restoration.
    - Product catalog with category filtering (Apparel, Accessories, Collectibles).
    - Detailed product view with size selector, color variations, stock counter, and image gallery.
 
-3. **Cart & Secure Checkout (`cart.php`, `checkout.php`, `order-success.php`)**
+4. **Cart & Secure Checkout (`cart.php`, `checkout.php`, `order-success.php`)**
    - Slide-over cart drawer and dedicated cart page.
    - CSRF token verification across all cart mutations and order submissions.
    - Order verification via cryptographically secure per-order access tokens to prevent IDOR attacks.
    - Automated WhatsApp invoice dispatch generator for direct merchant confirmation.
 
-4. **Standalone Admin Dashboard (`admin/`)**
+5. **Standalone Admin Dashboard (`admin/`)**
    - Self-contained authentication with brute-force rate-limiting and bcrypt password hashing.
    - Sales analytics and KPI tracking (Revenue, Orders, Customizer volume, Catalog count).
    - Order management with customizer design snapshot inspection.
@@ -36,7 +43,7 @@ This repository contains the standalone marketplace and customization studio mod
    - Studio Apparel Builder for creating pre-designed drops.
    - Administrative password change module.
 
-5. **Zero-Configuration SQLite Database**
+6. **Zero-Configuration SQLite Database**
    - Automatic database file generation and schema initialization on first run.
    - Bundled with sample merchandise and vector preset artworks.
    - Production-ready foreign key constraints, indexes, and write-ahead logging (WAL) PRAGMA optimizations.
@@ -75,6 +82,7 @@ marketplace/
 ├── catalog.php               # Product catalog with category filter
 ├── product.php               # Individual product details page
 ├── customizer.php            # Three.js 3D WebGL apparel customizer studio
+├── fitting-room.php          # 3D Character virtual fitting room & wardrobe simulator
 ├── cart.php                  # Shopping cart management
 ├── checkout.php              # Shipping form and payment checkout
 ├── order-success.php         # Order confirmation with cryptographic token
@@ -94,13 +102,22 @@ marketplace/
 │   ├── cart.php              # Cart item manipulation (add, update, remove)
 │   └── order.php             # Order placement and validation
 ├── assets/
-│   ├── css/                  # Marketplace and customizer stylesheets
+│   ├── css/                  # Marketplace, fitting room and customizer stylesheets
 │   ├── js/                   # Frontend logic and customizer engine
 │   │   ├── customizer.js     # Three.js customizer logic
 │   │   ├── marketplace.js    # Storefront theme and cart UI
-│   │   └── vendor/           # Three.js, OrbitControls, GLTFLoader
-│   ├── img/                  # Product graphics, presets, and mockups
-│   └── models/               # 3D apparel models (.glb format)
+│   │   └── vendor/           # Three.js ES module & addons, OrbitControls, GLTFLoader
+│   ├── img/                  # Product graphics, presets, mockups & character references
+│   │   ├── andri1.png        # Character reference photo 1
+│   │   ├── andri2.png        # Character reference photo 2
+│   │   ├── andriuwo.png      # Character reference photo 3
+│   │   └── references/       # High-res face textures & reference portraits
+│   └── models/               # 3D assets (.glb / .blend)
+│       ├── andri_fullbody_rigged.glb   # Rigged humanoid character model
+│       ├── andri_fullbody_rigged.blend # Master Blender project file
+│       ├── tshirt.glb                  # Realistic cotton t-shirt mesh
+│       ├── hoodie.glb                  # Realistic streetwear fleece hoodie
+│       └── accessory_slingbag.glb      # Modular slingbag accessory
 ├── data/                     # SQLite database storage (ignored by git)
 ├── database/                 # SQL schemas and seed files
 │   ├── schema.sql            # Table definitions and indexes

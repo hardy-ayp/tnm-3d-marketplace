@@ -85,9 +85,7 @@ $hasPortal = file_exists(__DIR__ . '/../../index.php');
           Studio Kustom
         </a>
         <a href="catalog.php" class="<?= $currentPage === 'catalog.php' ? 'active' : '' ?>">Katalog</a>
-        <?php if ($hasPortal && file_exists(__DIR__ . '/../../fitting-room.php')): ?>
-          <a href="../fitting-room.php" style="color:var(--red-ink); font-weight:700;">Fitting Room 3D</a>
-        <?php endif; ?>
+        <a href="fitting-room.php" class="<?= $currentPage === 'fitting-room.php' ? 'active' : '' ?>" style="color:var(--red-ink); font-weight:700;">Fitting Room 3D</a>
       </div>
 
       <!-- Actions -->
@@ -217,6 +215,15 @@ $hasPortal = file_exists(__DIR__ . '/../../index.php');
           <span class="mobile-link-text">
             <b>Studio Kustom Baju</b>
             <small>Desain kaos & hoodie sesukamu</small>
+          </span>
+        </a>
+        <a href="fitting-room.php" class="mobile-link <?= $currentPage === 'fitting-room.php' ? 'active' : '' ?>">
+          <span class="mobile-link-icon">
+            <svg class="ic" style="color:var(--red);"><use href="#ph-sparkle"></use></svg>
+          </span>
+          <span class="mobile-link-text">
+            <b>Fitting Room 3D</b>
+            <small>Coba langsung pakaian di karakter 3D</small>
           </span>
         </a>
         <a href="catalog.php" class="mobile-link <?= $currentPage === 'catalog.php' ? 'active' : '' ?>">
