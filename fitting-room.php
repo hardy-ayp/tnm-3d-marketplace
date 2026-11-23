@@ -1789,7 +1789,7 @@ $homeUrl   = "index.php";
 
     // Load Master 3D Model
     gltfLoader.load(
-      'assets/img/andri_fullbody_rigged.glb',
+      'assets/models/andri_fullbody_rigged.glb',
       (gltf) => {
         characterModel = gltf.scene;
         characterModel.position.set(0, -0.95, 0);
