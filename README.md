@@ -170,17 +170,33 @@ marketplace/
 
 ---
 
-## Contributing 3D Models
+## Areas for Community Contribution
 
-We welcome community contributions of new 3D apparel and merchandise assets (e.g., jackets, caps, jerseys, tote bags).
+We are actively seeking contributions across three main pillars:
 
-### 3D Asset Guidelines
-1. **File Format:** Binary glTF (`.glb`).
-2. **Scale & Units:** Metric meters (1 Blender unit = 1 meter). Centered at origin `(0, 0, 0)`.
-3. **Polygon Budget:** Keep vertex count between 10,000 and 60,000 vertices for smooth browser rendering.
-4. **UV Unwrapping:** Clean, non-overlapping UV layout on UVMap channel 0.
-5. **Materials:** PBR Metallic-Roughness workflow with embedded textures.
-6. **Decal Projection Target:** Ensure front and back torso meshes are properly named (e.g., `tshirt_mesh`, `hoodie_body`) for raycasting decal attachments.
+1. **3D Assets, Modeling & Garment Physics (Top Priority):**
+   - Transforming rigid clothing into realistic, anatomically fitted 3D garments with physical thickness, hem stitching, and natural fabric volume.
+   - Realistic cloth simulation and wrinkle baking (cotton vs fleece vs denim).
+   - Body conforming and natural skin clearance to eliminate clipping during 360-degree rotation.
+   - Smooth vertex weighting and rigging to `andri_fullbody_rigged.blend`.
+   - Optimized Three.js rendering maintaining 60 FPS in browser.
+
+2. **Web Security, Hardening & Data Protection:**
+   - Comprehensive vulnerability audits (OWASP Top 10).
+   - Admin session hardening, brute-force rate-limiting, and bcrypt password verification.
+   - 100% PDO prepared statement enforcement against SQL injection.
+   - Strict CSRF token validation on all cart and checkout state mutations.
+   - Secure image upload handling (MIME verification, magic byte checks, random naming) for customizer artwork.
+   - Zero exposure of private database records, customer orders, or credentials.
+
+3. **Checkout Workflow, Cart & System Architecture:**
+   - Responsive slide-over cart drawer and dedicated cart page.
+   - Real-time stock validation and out-of-stock guards.
+   - Frictionless customer checkout form and automated WhatsApp invoice generator.
+   - Order tracking and fulfillment features in the administrative panel.
+   - Database portability (zero-config SQLite default with extensible MySQL/PostgreSQL support).
+
+For complete technical specifications and detailed guidelines, please refer to the [Project Brief (English)](BRIEF.md) or [Brief Proyek (Bahasa Indonesia)](BRIEF_ID.md).
 
 ---
 

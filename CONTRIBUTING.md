@@ -1,6 +1,13 @@
 # Contributing to 3D Apparel Studio and Marketplace
 
-Thank you for your interest in contributing to the 3D Apparel Studio and Marketplace project. We welcome contributions from developers, 3D artists, designers, and testers.
+Thank you for your interest in contributing to the 3D Apparel Studio and Marketplace project. We welcome contributions from developers, 3D artists, designers, and security researchers.
+
+We are actively seeking contributions in three key areas:
+1. **3D Assets & Garment Models (Top Priority):** Cloth physics, garment volume, body conforming, natural folds, and rigging.
+2. **Web Security & Hardening:** Vulnerability auditing, session hardening, SQL injection prevention, CSRF validation, and input sanitization.
+3. **Checkout Workflow & System Architecture:** Cart management, stock validation, checkout friction reduction, and admin order tracking.
+
+For full technical specifications, please read our [Project Brief (English)](BRIEF.md) or [Brief Proyek (Bahasa Indonesia)](BRIEF_ID.md).
 
 ---
 
