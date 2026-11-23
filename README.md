@@ -137,8 +137,8 @@ marketplace/
 ### Option A: Using PHP Built-in Web Server
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/3d-apparel-marketplace.git
-   cd 3d-apparel-marketplace
+   git clone https://github.com/hardy-ayp/tnm-3d-marketplace.git
+   cd tnm-3d-marketplace
    ```
 2. Start the local server:
    ```bash
