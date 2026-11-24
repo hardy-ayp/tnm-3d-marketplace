@@ -28,8 +28,10 @@ The character is not a continuous human body. Instead, it was assembled from iso
    - The bottom cuff of `Andri_Jeans` ends at Z = 0.087m - 0.199m.
    - The shoes (`Andri_Shoes`, only 72 polygons) have a maximum height of Z = 0.078m.
    - There is an empty void between the pant cuff and the shoes: no ankles, no socks, no lower leg geometry. The shoes hover detached beneath the pants.
-5. **Planar Board Artifact Behind Head:**
-   - A rigid, flat, vertical polygonal plane stands upright directly behind the nape of the neck and occipital bone (leftover uncleaned photogrammetry scan backdrop).
+5. **Vertical Collar Board / Wall Behind Head (Crucial User Finding):**
+   - Directly behind Andri's face/head stands a vertical, curved black wall that looks like a board or stiff headrest.
+   - Root Cause: This is **not a scanner backdrop**; it is the **rear torso fabric of `Andri_TShirt` and `Andri_Hoodie` extending abnormally high up to Z = 1.605m (halfway up the back of the skull)**.
+   - When the clothing was generated procedurally, the torso rings were stacked vertically without cutting a realistic anatomical neck hole at the back. Because Andri has no neck mesh, this tall back fabric wall stands exposed right behind his head like an upright board.
 
 ---
 
@@ -83,9 +85,13 @@ The ultimate solution is to eliminate the sliced "Frankenstein" approach and imp
    - The upper rim extends high enough (Z = 0.22m) into the pant leg so that during walking, posing, or camera rotation, the pants never reveal an empty void above the shoes.
 2. Assign weights to `foot.L`/`foot.R` and `shin.L`/`shin.R`.
 
-### Step 5: Delete Stray Planar Board Behind Head
-1. Isolate `Andri_Head` and `Andri_Hair`.
-2. Delete all flat coplanar scan artifact faces in the region Y > 0.04m, Z between 1.45m and 1.65m.
+### Step 5: Reshape and Lower the Rear Shirt/Hoodie Collar (Remove the Board Behind Head)
+1. Select `Andri_TShirt` and enter Edit Mode (`Tab`).
+2. Inspect the rear neckline (faces with Y > 0.02m and Z > 1.50m).
+3. The rear collar currently extends up to Z = 1.605m, creating the upright "board" behind Andri's head.
+4. Lower the rear collar vertices down to a natural cervical base line at Z = 1.48m - 1.50m (level with the C7 vertebra / upper trapezius).
+5. Ensure the collar rim forms a clean, natural circular/oval opening around the newly modeled neck, rather than an upright vertical wall.
+6. Perform the same neckline adjustment on `Andri_Hoodie` so the collapsed hood rests naturally on the shoulders rather than standing upright behind the skull.
 
 ### Step 6: Mirror UV on Back of T-Shirt
 1. Select rear-facing faces on `Andri_TShirt`.
